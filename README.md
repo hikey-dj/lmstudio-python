@@ -7,7 +7,7 @@
 The SDK can be installed from PyPI as follows:
 
 ```console
-$ pip install lmstudio
+$ pip install git+https://github.com/hikey-dj/lmstudio-python
 ```
 
 Installation from the repository URL or a local clone is also
