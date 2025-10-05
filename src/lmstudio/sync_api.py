@@ -1325,7 +1325,7 @@ class LLM(SyncModelHandle[_SyncSessionLlm]):
     @sdk_public_api()
     def act(
         self,
-        chat: Chat | ChatHistoryDataDict | str,
+        agent_chat: Chat,
         tools: Iterable[ToolDefinition],
         *,
         max_prediction_rounds: int | None = None,
@@ -1353,8 +1353,6 @@ class LLM(SyncModelHandle[_SyncSessionLlm]):
         start_time = time.perf_counter()
         # It is not yet possible to combine tool calling with requests for structured responses
         response_format = None
-        agent_chat: Chat = Chat.from_history(chat)
-        del chat  # Avoid any further access to the input chat history
         # Multiple rounds, until all tool calls are resolved or limit is reached
         round_counter: Iterable[int]
         if max_prediction_rounds is not None:
